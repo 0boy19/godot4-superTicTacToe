@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtm1xc5mxhq5v"]
+
+[ext_resource type="Texture2D" uid="uid://dfovay06jq7p3" path="res://Assets/O.png" id="1_pucfx"]
+
+[node name="Circle" type="Sprite2D"]
+position = Vector2(1, 4.5)
+scale = Vector2(0.224, 0.235)
+texture = ExtResource("1_pucfx")

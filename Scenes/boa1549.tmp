@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://boc5j8hu3e4p1"]
+
+[ext_resource type="Texture2D" uid="uid://dpey2sfbr484m" path="res://Assets/board.png" id="1_6g63c"]
+[ext_resource type="Script" path="res://Scenes/scripts/board.gd" id="2_kb57m"]
+[ext_resource type="PackedScene" uid="uid://rgg5eaqfti7f" path="res://Scenes/SelectableArea.tscn" id="3_33p3y"]
+
+[node name="Board" type="Sprite2D"]
+scale = Vector2(0.996667, 1)
+texture = ExtResource("1_6g63c")
+script = ExtResource("2_kb57m")
+
+[node name="POS0" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(-209.346, -183.178)
+pos = 0
+
+[node name="POS1" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(14.0187, -189.72)
+pos = 1
+
+[node name="POS2" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(215.888, -185.047)
+pos = 2
+
+[node name="POS3" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(-202.804, 10.2804)
+pos = 3
+
+[node name="POS4" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(14.9533, 9.34579)
+pos = 4
+
+[node name="POS5" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(212.15, 6.54204)
+pos = 5
+
+[node name="POS6" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(-199.065, 207.477)
+pos = 6
+
+[node name="POS7" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(-3.73833, 210.28)
+pos = 7
+
+[node name="POS8" parent="." instance=ExtResource("3_33p3y")]
+position = Vector2(214.953, 216.822)
+pos = 8
+
+[node name="Cam2D(For testing, del ltr )" type="Camera2D" parent="."]
