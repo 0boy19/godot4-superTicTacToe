@@ -9,6 +9,7 @@
 scale = Vector2(0.996667, 1)
 texture = ExtResource("1_6g63c")
 script = ExtResource("2_pn325")
+global_pos = null
 
 [node name="POS0" parent="." groups=["positionsGroup"] instance=ExtResource("3_33p3y")]
 position = Vector2(-209.346, -183.178)
