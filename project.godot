@@ -10,15 +10,28 @@ config_version=5
 
 [application]
 
-config/name="Tic Tac Toe"
+config/name="SUPER Tic Tac Toe"
+config/version="0.7.7"
 run/main_scene="res://Scenes/main.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
+config/features=PackedStringArray("4.2", "GL Compatibility")
+config/icon="res://Assets/board.png"
 
 [autoload]
 
 Game="*res://Scenes/scripts/Game.gd"
-LocBoard="*res://Scenes/scripts/board.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "yellow",
+"res://Misc/": "gray",
+"res://Scenes/": "purple",
+"res://Scenes/scripts/": "blue"
+}
 
 [input]
 

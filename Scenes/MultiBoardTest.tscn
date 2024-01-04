@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhbabfqv28xke"]
+
+[ext_resource type="PackedScene" uid="uid://boc5j8hu3e4p1" path="res://Scenes/board.tscn" id="1_cgai3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Board0" parent="." instance=ExtResource("1_cgai3")]
+position = Vector2(-265, 5)
+scale = Vector2(0.563334, 0.53)
+global_pos = 0
+
+[node name="Board1" parent="." instance=ExtResource("1_cgai3")]
+position = Vector2(263, 6)
+scale = Vector2(0.581667, 0.596667)
+global_pos = 1

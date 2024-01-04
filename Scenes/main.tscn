@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://duuq1l1qhh8uf"]
+[gd_scene load_steps=6 format=3 uid="uid://duuq1l1qhh8uf"]
 
 [ext_resource type="PackedScene" uid="uid://boc5j8hu3e4p1" path="res://Scenes/board.tscn" id="1_55cf8"]
 [ext_resource type="Texture2D" uid="uid://domo5b6n4oio0" path="res://icon.svg" id="3_0dwkv"]
+[ext_resource type="Script" path="res://Scenes/scripts/SuperBoard.gd" id="3_jmnwi"]
 [ext_resource type="Shader" path="res://Misc/bg.gdshader" id="3_oc6y2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w23p2"]
@@ -24,48 +25,49 @@ scale = Vector2(11.586, 7.0927)
 texture = ExtResource("3_0dwkv")
 
 [node name="SuperBoard" type="Node2D" parent="."]
+script = ExtResource("3_jmnwi")
 
-[node name="Board0" parent="SuperBoard" instance=ExtResource("1_55cf8")]
-position = Vector2(-241, -225)
+[node name="Board0" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
+position = Vector2(-233, -218)
 scale = Vector2(0.334, 0.32)
 global_pos = 0
 
-[node name="Board1" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board1" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(-4, -224)
 scale = Vector2(0.334, 0.32)
 global_pos = 1
 
-[node name="Board2" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board2" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(244, -221)
 scale = Vector2(0.334, 0.32)
 global_pos = 2
 
-[node name="Board3" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board3" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(-238, -5)
 scale = Vector2(0.334, 0.32)
 global_pos = 3
 
-[node name="Board4" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board4" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(-0.999998, -8)
 scale = Vector2(0.334, 0.32)
 global_pos = 4
 
-[node name="Board5" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board5" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(247, 2)
 scale = Vector2(0.334, 0.32)
 global_pos = 5
 
-[node name="Board6" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board6" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(-233, 202)
 scale = Vector2(0.334, 0.32)
 global_pos = 6
 
-[node name="Board7" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board7" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(-5, 207)
 scale = Vector2(0.334, 0.32)
 global_pos = 7
 
-[node name="Board8" parent="SuperBoard" instance=ExtResource("1_55cf8")]
+[node name="Board8" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
 position = Vector2(244, 218)
 scale = Vector2(0.334, 0.32)
 global_pos = 8
