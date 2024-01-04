@@ -1,6 +1,10 @@
 extends Node
-#TODO: ADD FUNCTIONALY OF LOCPOS CORRESPONDING TO GLOPOS and 
-#pos of rows, collums and diagonals to check is stored in this dictonary
+#TODO: UI AND MULTIPLAYER OR BOT
+
+#ui:https://youtu.be/Ueivz6JY5Fw?si=uDK3Sl0mCJokO9sg
+@onready var ui = $ui as ui
+#allows us to call ui methords by doing for e.g. "ui.'somemethord'"
+
 @onready var checker_dict : Dictionary = {
 	"row_one" : [0,1,2],
 	"row_two" : [3,4,5],
@@ -11,7 +15,9 @@ extends Node
 	"dia_one" : [0,4,8],
 	"dia_two" : [2,4,6]
 }
-signal LocalBoardPosPushSignal
+signal LocalBoardPosPushSignal # for superBoard Node
+var move_count:=-1#TEST, used in SelectableArea.gd
+
 
 var data_store : Array = []#stores current values in each pos, this is how we evaluate the pos and check win.
 
@@ -136,7 +142,8 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 			if data_store[checker_dict[key][j]] == letter: 
 				tally +=1
 			else:
-				print("tally error 1")
+				pass
+				#print("tally error 1")
 				
 		if tally == 3:
 			#win = true
@@ -146,7 +153,7 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 				GBOARD[locPos] = letter # TEST works for now 
 				data_store = GBOARD
 				check_win(locPos,letter,-1) #check win in GBOARD
-			elif locPos == -1:
+			elif locPos == -1:#if it's globalBoard
 				print("THE GLOBAL BOARD WAS A WINNENRS named ", letter)
 				globalWin = true
 			break
@@ -154,16 +161,23 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 		else:
 			tally = 0
 		#TODO TIE condition is 'kinda' bugged and broken. Mby gotta fix? cause this runs multiple times 
-			if "--" not in data_store:
-				winner_placer(letter ,locPos, true)# it's a tie!
-				GBOARD[locPos] = "tie"
-				print("winner_placer is tie and locPos is:", locPos)
-				#break# dont uncomment this, it will make it buggy
+			if locPos >= 0: #if it's not -1,
+				if "--" not in data_store:
+					winner_placer(letter ,locPos, true)# it's a tie!
+					GBOARD[locPos] = "tie"
+					print("winner_placer is tie and locPos is:", locPos)
+					#break# dont uncomment this, it will make it buggy
+			elif locPos == -1:#if it's globalBoard
+				if "--" not in data_store:
+					print("THE GLOBAL BOARD WAS TIED")
+					globalTie = true
 			
 	if globalWin == true:
 		print("YOU WIN ", letter)
 		reset_data_store()
-	next_Local_Board_Position(pos) #TESTING#TESTING#TESTING#TESTING#TESTING
+		
+		
+	next_Local_Board_Position(pos) #TESTING#TESTING#TESTING#TESTING#TESTING #no errors, so leave as is
 
 var active_Boards_Exceptions =[]
 func next_Local_Board_Position(lastPlayedLocPos):

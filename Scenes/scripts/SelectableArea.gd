@@ -26,7 +26,7 @@ func _on_mouse_exited():
 func play_x(boardNum:int,boardPos:int): #boardNum works, what we need to do is add this to a dictionary just for the  local board.
 	if (!selected and !Game.globalWin):
 		add_child(x.instantiate()) #this instances the "cross" scene to be placed on the board.
-		print("DATA STORE",Game.data_store)
+		#print("DATA STORE",Game.data_store)
 		print("BOARD NO. ", boardNum) #prints which board
 		print("BOARD POS. ", boardPos) #prints board pos
 		localBoardDictionaryadd(boardNum,boardPos, "x") #adds pos to corresponding local board.
@@ -45,20 +45,30 @@ func play_o(boardNum:int,boardPos:int):
 		
 
 
-	
 
 func _on_input_event(_viewport, event, _shape_idx): #when we click a pos
-	var boardNum = $".".get_owner().global_pos #the local board number pos is in, thsese have to happen during runtime
-	var boardPos = $".".pos
 	if event.is_action_pressed("primary action") and selected == false:
-		play_x(boardNum,boardPos)
+		var boardNum = $".".get_owner().global_pos #the local board number pos is in, thsese have to happen during runtime
+		var boardPos = $".".pos
+		Game.move_count
+		print("Game.move_count",Game.move_count)
+		Game.move_count = Game.move_count + 1
+		print("them moves1: ", Game.move_count)
+		print("them moves3: ", Game.move_count % 2)
+
+		if Game.move_count % 2 == 0:#if even, play x, if odd, playo
+			print("them moves2: ", Game.move_count)
+			play_x(boardNum,boardPos)
+		else:
+			play_o(boardNum,boardPos)
+			
 		$mouse_over.hide()
 		selected = true
 
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and selected == false:
-		play_o(boardNum,boardPos)
-		$mouse_over.hide()
-		selected = true
+	#elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and selected == false:
+		#play_o(boardNum,boardPos)
+		#$mouse_over.hide()
+		#selected = true
 
 		
 		

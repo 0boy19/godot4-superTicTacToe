@@ -26,9 +26,10 @@ func disable_other_boards():
 	for boardNum in range(9):  # have 9 boards (0 to 8)
 		var boardNode = "Board" + str(boardNum) # basically does "$board0" ,"$board1","$board2"...
 		#print(boardNode)
-		var GBoard= Game.GBOARD
+		var GBoard= Game.GBOARD#global board
 		
-		if actBoards.find(boardNum) == -1:#meaning if find couldn't find what u were looking for,disable them boards that are not active boards
+		
+		if actBoards.find(boardNum) == -1:#meaning if "find" couldn't find what u were looking for(".find" returns -1 if it can't find what ur lookin for),disable them boards that are not active boards
 			# BoardNum not in activeBoardNums, disable collisions
 			get_node(boardNode).disable_positionCollisions()
 			get_node(boardNode + "/ClaimedImg").set_texture(disabled_board)

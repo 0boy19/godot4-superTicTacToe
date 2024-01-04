@@ -2,7 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dfovay06jq7p3" path="res://Assets/O.png" id="1_pucfx"]
 
-[node name="Circle" type="Sprite2D"]
-position = Vector2(1, 4.5)
-scale = Vector2(0.224, 0.235)
+[node name="Circle" type="Node2D"]
+scale = Vector2(0.244, 0.235)
+
+[node name="CircleSprite" type="Sprite2D" parent="."]
+position = Vector2(-5.38585, -20.1117)
+scale = Vector2(1.01938, 1.07369)
 texture = ExtResource("1_pucfx")

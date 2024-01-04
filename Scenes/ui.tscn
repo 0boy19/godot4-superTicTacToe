@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://hv6uwmygfun1"]
+
+[ext_resource type="Script" path="res://Scenes/scripts/ui.gd" id="1_eo881"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_eo881")
+
+[node name="during_game" type="Node2D" parent="."]
+
+[node name="game_over_screen" type="Node2D" parent="."]

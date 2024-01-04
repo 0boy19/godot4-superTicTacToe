@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cy2j3v0cygxiq" path="res://Assets/Claimed_Disabled.png" id="4_gek2u"]
 
 [node name="Board" type="Sprite2D"]
+self_modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.996667, 1)
 texture = ExtResource("1_6g63c")
 script = ExtResource("2_pn325")
@@ -50,8 +51,6 @@ pos = 8
 position = Vector2(0, -1.52588e-05)
 texture = ExtResource("4_gek2u")
 region_rect = Rect2(160.084, 292.613, 319.549, 188.306)
-
-[node name="testcam" type="Camera2D" parent="."]
 
 [connection signal="input_event" from="POS0" to="." method="_on_pos_0_input_event"]
 [connection signal="input_event" from="POS1" to="." method="_on_pos_1_input_event"]

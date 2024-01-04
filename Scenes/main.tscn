@@ -1,30 +1,23 @@
 [gd_scene load_steps=6 format=3 uid="uid://duuq1l1qhh8uf"]
 
 [ext_resource type="PackedScene" uid="uid://boc5j8hu3e4p1" path="res://Scenes/board.tscn" id="1_55cf8"]
-[ext_resource type="Texture2D" uid="uid://domo5b6n4oio0" path="res://icon.svg" id="3_0dwkv"]
+[ext_resource type="Texture2D" uid="uid://bjfxctcc6s6hc" path="res://Misc/paperBg.png" id="1_h4mse"]
+[ext_resource type="Script" path="res://Scenes/scripts/Camera2D.gd" id="2_w42uk"]
 [ext_resource type="Script" path="res://Scenes/scripts/SuperBoard.gd" id="3_jmnwi"]
-[ext_resource type="Shader" path="res://Misc/bg.gdshader" id="3_oc6y2"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w23p2"]
-shader = ExtResource("3_oc6y2")
-shader_parameter/background_color = Color(0, 0, 0, 1)
-shader_parameter/foreground_color = Color(1, 1, 1, 1)
-shader_parameter/grid_size = 50.0
-shader_parameter/dot_size = 0.1
+[ext_resource type="PackedScene" uid="uid://hv6uwmygfun1" path="res://Scenes/ui.tscn" id="4_jm631"]
 
 [node name="Main" type="Node"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1.07, 1.07)
-
 [node name="background" type="Sprite2D" parent="."]
-visible = false
-texture_repeat = 2
-material = SubResource("ShaderMaterial_w23p2")
-scale = Vector2(11.586, 7.0927)
-texture = ExtResource("3_0dwkv")
+texture = ExtResource("1_h4mse")
+region_rect = Rect2(5.10678, 4.35228, 1914.89, 1075.65)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+script = ExtResource("2_w42uk")
 
 [node name="SuperBoard" type="Node2D" parent="."]
+scale = Vector2(1.585, 1.585)
 script = ExtResource("3_jmnwi")
 
 [node name="Board0" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
@@ -71,3 +64,5 @@ global_pos = 7
 position = Vector2(244, 218)
 scale = Vector2(0.334, 0.32)
 global_pos = 8
+
+[node name="ui" parent="." instance=ExtResource("4_jm631")]

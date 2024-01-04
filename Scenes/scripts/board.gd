@@ -7,8 +7,10 @@ extends Sprite2D
 var LBoardDisabled :bool = false #to know if the local board has been won
 #var disabled_board = preload("res://Assets/Claimed_Disabled.png")
 var tie_texture = preload("res://Assets/Tie.png")
-var claimByO = preload("res://Assets/O.png")
-var claimByX= preload("res://Assets/X.png")
+#var claimByO = preload("res://Assets/O.png")
+#var claimByX= preload("res://Assets/X.png")
+var claimByO = preload("res://Scenes/circle.tscn")
+var claimByX= preload("res://Scenes/cross.tscn")#TEST #-works
 var won_strike = preload("res://Scenes/won_strike.tscn")
 
 
@@ -31,16 +33,17 @@ func _ready():
 func claimShip(letter):
 	LBoardDisabled = true
 	if letter == "x":
-		$ClaimedImg.set_texture(claimByX)
-		$ClaimedImg.show()
-	# add that to the globalBoard
+		#$ClaimedImg.set_texture(claimByX)#instead of setting texture,instance a new scene
+		#$ClaimedImg.show()
+		add_child(claimByX.instantiate())#make $Cross node
+		$Cross.scale=Vector2(1,1)#works, TODO: same to "o"
 	elif letter == "o":
-		$ClaimedImg.set_texture(claimByO)
-		$ClaimedImg.show()
-	#"positionsGroup".hide()
-		
+		#$ClaimedImg.set_texture(claimByO)
+		#$ClaimedImg.show()
+		add_child(claimByO.instantiate())
+		$Circle.scale=Vector2(1,1)
 	else:
-		pass
+		print(letter , " Error at Claimship Func")
 
 
 
@@ -50,10 +53,11 @@ func winTieDetector(): #an alternative to checking every second
 	if Game.local_Win_Value == global_pos: #if win
 		LBoardDisabled = true
 		print(Game.current_Player, " won, from board script")
-		claimShip(Game.current_Player)
+		claimShip(Game.current_Player)# NOTE: maybe change this around so it's shows on top of gamestrike, or this way is fine
+		game_strike(Game.current_win_condition)
 		disable_positionCollisions()
 		print("GLOBAL BOARD! ",Game.GBOARD)
-		game_strike(Game.current_win_condition)
+		
 	elif Game.local_Tie_Value == global_pos: #if tie
 		LBoardDisabled = true
 		disable_positionCollisions()#dont have to but just to be sure
@@ -126,39 +130,39 @@ func enable_positionCollisions():
 
 ##SIGNALS #change to "primany action" later
 func _on_pos_0_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed :#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_1_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_2_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_3_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_4_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_5_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_6_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_7_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 func _on_pos_8_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:#change to "primany action" later
+	if event.is_action_pressed("primary action"):#change to "primany action" later
 		winTieDetector()
 
 
