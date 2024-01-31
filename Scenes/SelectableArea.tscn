@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://rgg5eaqfti7f"]
 
 [ext_resource type="Script" path="res://Scenes/scripts/SelectableArea.gd" id="1_ud4dw"]
-[ext_resource type="Texture2D" uid="uid://jwajrs8u388g" path="res://Assets/select.png" id="2_pu62n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn7bc"]
+size = Vector2(150.25, 148)
 
 [node name="POS" type="Area2D"]
 script = ExtResource("1_ud4dw")
@@ -9,12 +11,9 @@ script = ExtResource("1_ud4dw")
 [node name="mouse_over" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 scale = Vector2(0.509762, 0.470421)
-texture = ExtResource("2_pu62n")
 
-[node name="x_o(dont need so delete)" type="Sprite2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-101, 68, 0, -94, 100, 68)
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mn7bc")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

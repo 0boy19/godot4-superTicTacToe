@@ -1,6 +1,18 @@
 extends Node
-#TODO: ADD FUNCTIONALY OF LOCPOS CORRESPONDING TO GLOPOS and 
-#pos of rows, collums and diagonals to check is stored in this dictonary
+#TODO: UI AND MULTIPLAYER OR BOT
+##Multiplayer##
+var isXTurn:bool=true #is used, dont remove
+
+###############
+##UI##
+signal ui_turnLabelUpdate(playerLetter)
+signal ui_game_over
+###############
+
+#ui:https://youtu.be/Ueivz6JY5Fw?si=uDK3Sl0mCJokO9sg
+#@onready var ui = get_node("/root/Main/ui") as ui #TEST- get_node works.
+#allows us to call ui methords by doing for e.g. "ui.'somemethord'"
+
 @onready var checker_dict : Dictionary = {
 	"row_one" : [0,1,2],
 	"row_two" : [3,4,5],
@@ -11,7 +23,9 @@ extends Node
 	"dia_one" : [0,4,8],
 	"dia_two" : [2,4,6]
 }
-signal LocalBoardPosPushSignal
+signal LocalBoardPosPushSignal # for superBoard Node
+var move_count:=-1#TEST, used in SelectableArea.gd
+
 
 var data_store : Array = []#stores current values in each pos, this is how we evaluate the pos and check win.
 
@@ -37,7 +51,7 @@ var board7:Array = []
 var board8:Array = [] 
 
 var active_Boards :Array = [0,1,2,3,4,5,6,7,8]
-
+var active_Boards_Exceptions =[]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset_data_store()
@@ -52,13 +66,14 @@ func reset_data_store():
 		data_store.append("--")
 
 func reset_active_Boards():
+	active_Boards_Exceptions = []
 	active_Boards = [0,1,2,3,4,5,6,7,8] # we test values from here
 
 func reset_global_winTie():
 	globalWin = false
 	globalTie = false
 
-func reset_Loc_Boards_Score(): #TODO: RESET GBOARD score
+func reset_Loc_Boards_Score(): #TODO: idk
 	local_Win_Value = 9 # its 9 cause it's a place holder since no board has glo_pos of 9
 	local_Tie_Value= 9
 	
@@ -122,6 +137,7 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 		#localBoardPosPush(locPos)
 	#else:
 		#pass
+	ui_turnLabelUpdate.emit(letter)#TBD works rn
 	var tally:int = 0
 	var key =[]
 	var keys_to_check = get_keys_for_value(pos) 
@@ -136,7 +152,8 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 			if data_store[checker_dict[key][j]] == letter: 
 				tally +=1
 			else:
-				print("tally error 1")
+				pass
+				#print("tally error 1")
 				
 		if tally == 3:
 			#win = true
@@ -146,7 +163,7 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 				GBOARD[locPos] = letter # TEST works for now 
 				data_store = GBOARD
 				check_win(locPos,letter,-1) #check win in GBOARD
-			elif locPos == -1:
+			elif locPos == -1:#if it's globalBoard
 				print("THE GLOBAL BOARD WAS A WINNENRS named ", letter)
 				globalWin = true
 			break
@@ -154,18 +171,27 @@ func check_win(pos:int, letter:String, locPos:int): # this is checked every turn
 		else:
 			tally = 0
 		#TODO TIE condition is 'kinda' bugged and broken. Mby gotta fix? cause this runs multiple times 
-			if "--" not in data_store:
-				winner_placer(letter ,locPos, true)# it's a tie!
-				GBOARD[locPos] = "tie"
-				print("winner_placer is tie and locPos is:", locPos)
-				#break# dont uncomment this, it will make it buggy
+			if locPos >= 0: #if it's not -1,
+				if "--" not in data_store:
+					winner_placer(letter ,locPos, true)# it's a tie!
+					GBOARD[locPos] = "tie"
+					print("winner_placer is tie and locPos is:", locPos)
+					#break# dont uncomment this, it will make it buggy
+			elif locPos == -1:#if it's globalBoard
+				if "--" not in data_store:
+					print("THE GLOBAL BOARD WAS TIED")
+					globalTie = true
+					ui_game_over.emit("tie")
 			
 	if globalWin == true:
+		ui_game_over.emit(letter)
 		print("YOU WIN ", letter)
 		reset_data_store()
-	next_Local_Board_Position(pos) #TESTING#TESTING#TESTING#TESTING#TESTING
+		
+		
+	next_Local_Board_Position(pos) #TESTING#TESTING#TESTING#TESTING#TESTING #no errors, so leave as is
 
-var active_Boards_Exceptions =[]
+
 func next_Local_Board_Position(lastPlayedLocPos):
 	##############TODO############
 	#take the local pos, and make it the board position you have to play on the next board.
@@ -236,6 +262,7 @@ func winner_placer(letter ,boardNum, tie:bool):#looking at boardnum and win cond
 func testfunc():
 	print($".")
 	active_Boards = [0,1,2,3,4,5,6,7,8]
+	#ui.on_game_over()
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -249,6 +276,7 @@ func _process(_delta):
 		reset_active_Boards()
 		
 	elif Input.is_key_pressed(KEY_SPACE):
-		testfunc()
+		#testfunc()
+		pass
 
 

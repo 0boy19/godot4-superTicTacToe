@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://mw0cg7sxbaye"]
+
+[ext_resource type="FontFile" uid="uid://bc3gxuf6p3jv0" path="res://Misc/fabfeltscript.bold.otf" id="1_mar6r"]
+
+[resource]
+Button/fonts/font = ExtResource("1_mar6r")
+ColorPickerButton/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_mar6r")

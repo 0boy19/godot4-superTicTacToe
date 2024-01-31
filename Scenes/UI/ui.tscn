@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://hv6uwmygfun1"]
+
+[ext_resource type="Script" path="res://Scenes/scripts/ui.gd" id="1_eo881"]
+[ext_resource type="Texture2D" uid="uid://bjfxctcc6s6hc" path="res://Misc/paperBg.png" id="2_1gh66"]
+[ext_resource type="FontFile" uid="uid://b6rb67exgvpqj" path="res://Misc/KGHAPPY.ttf" id="3_rgq7q"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_eo881")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(955.5, 539)
+scale = Vector2(0.995313, 0.998148)
+texture = ExtResource("2_1gh66")
+region_rect = Rect2(5.10678, 4.35228, 1914.89, 1075.65)
+
+[node name="BackToMainMenu" type="Button" parent="."]
+offset_left = 27.0
+offset_top = 1012.0
+offset_right = 110.0
+offset_bottom = 1059.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 21
+text = "BACK"
+
+[node name="during_game" type="Node2D" parent="."]
+
+[node name="PlayerTurn" type="RichTextLabel" parent="during_game"]
+anchors_preset = -1
+anchor_right = 0.436
+offset_left = 747.0
+offset_top = 23.0
+offset_right = 1230.0
+offset_bottom = 136.0
+theme_override_colors/default_color = Color(0, 0.12549, 0.572549, 1)
+theme_override_fonts/normal_font = ExtResource("3_rgq7q")
+theme_override_font_sizes/normal_font_size = 71
+bbcode_enabled = true
+text = "[wave amp=14.0 freq=7.0 connected=1] X's turn [/wave]"
+fit_content = true
+scroll_active = false
+
+[node name="game_over_screen" type="Node2D" parent="."]
+
+[node name="game_over_Score_Display" type="Node2D" parent="game_over_screen"]
+visible = false
+position = Vector2(41, 39)
+
+[node name="restartButton" type="Button" parent="game_over_screen"]
+offset_left = 818.0
+offset_top = 768.0
+offset_right = 1091.0
+offset_bottom = 833.0
+theme_override_font_sizes/font_size = 41
+text = "Restart Game"
+
+[node name="WinnerDisplay" type="RichTextLabel" parent="game_over_screen"]
+offset_left = 340.0
+offset_top = 342.0
+offset_right = 1658.0
+offset_bottom = 588.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_rgq7q")
+theme_override_font_sizes/normal_font_size = 155
+bbcode_enabled = true
+text = "[rainbow freq=1.0 sat=1 val=0.8]Winner[/rainbow]  is _!
+"
+fit_content = true
+scroll_active = false
+
+[node name="wait_for_screen" type="Timer" parent="game_over_screen"]
+process_callback = 0
+wait_time = 1.8
+one_shot = true
+
+[connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
+[connection signal="pressed" from="game_over_screen/restartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="game_over_screen/wait_for_screen" to="." method="_on_wait_for_screen_timeout"]
