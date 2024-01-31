@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=3 uid="uid://c32txcww687ce"]
+
+[ext_resource type="Script" path="res://Scenes/scripts/multiplayerUiConnections.gd" id="1_yyufn"]
+
+[node name="MultiplayerUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yyufn")
+
+[node name="MultiplayerLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.038
+anchor_top = 0.03
+anchor_right = 0.084
+anchor_bottom = 0.052
+offset_left = -0.200005
+offset_top = 0.199999
+offset_right = 1.39999
+offset_bottom = -0.120003
+text = "Multiplayer"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.038
+anchor_top = 0.06
+anchor_right = 0.143
+anchor_bottom = 0.091
+offset_left = -0.200005
+offset_top = 0.399998
+offset_right = 0.299988
+offset_bottom = -1.46001
+placeholder_text = "Type your name here"
+
+[node name="Host" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065
+anchor_top = 0.198
+anchor_right = 0.253
+anchor_bottom = 0.308951
+offset_left = 0.517159
+offset_top = -0.436295
+offset_right = 0.917267
+offset_bottom = -0.200012
+grow_horizontal = 2
+grow_vertical = 2
+text = "Host"
+metadata/_edit_use_anchors_ = true
+
+[node name="HostIP" type="Label" parent="Host"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.324
+anchor_top = -0.216228
+anchor_right = 0.682114
+anchor_bottom = -0.0212276
+offset_left = 0.120384
+offset_top = 0.0374718
+offset_right = 0.0587311
+offset_bottom = 0.0578308
+text = "IP:[Private IP]"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Join" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261
+anchor_top = 0.204
+anchor_right = 0.463
+anchor_bottom = 0.307
+offset_left = 0.100006
+offset_top = -0.240005
+offset_right = 0.299927
+offset_bottom = -0.420013
+grow_horizontal = 2
+grow_vertical = 2
+text = "join
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="HostsIP" type="LineEdit" parent="Join"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.291988
+anchor_top = 1.02752
+anchor_right = 0.662346
+anchor_bottom = 1.3207
+offset_left = -0.12326
+offset_right = 1.65926
+offset_bottom = 0.0439987
+grow_horizontal = 2
+placeholder_text = "Host's IP Address"
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="InvalidIP" type="Label" parent="Join/HostsIP"]
+visible = false
+modulate = Color(0.94902, 0.552941, 0.486275, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.110275
+anchor_top = 1.24883
+anchor_right = 0.832926
+anchor_bottom = 1.96694
+offset_left = 0.120384
+offset_top = 0.0374718
+offset_right = 0.0587311
+offset_bottom = 0.0578308
+text = "invalid ip!"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.476
+anchor_top = 0.2
+anchor_right = 0.692
+anchor_bottom = 0.306
+offset_left = 0.614075
+offset_top = -0.073761
+offset_right = 0.643555
+offset_bottom = 0.257111
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start game"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackToMainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 1012.0
+offset_right = 110.0
+offset_bottom = 1059.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 21
+text = "BACK"
+
+[connection signal="pressed" from="Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

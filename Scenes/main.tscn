@@ -1,68 +1,94 @@
-[gd_scene load_steps=6 format=3 uid="uid://duuq1l1qhh8uf"]
+[gd_scene load_steps=7 format=3 uid="uid://duuq1l1qhh8uf"]
 
 [ext_resource type="PackedScene" uid="uid://boc5j8hu3e4p1" path="res://Scenes/board.tscn" id="1_55cf8"]
 [ext_resource type="Texture2D" uid="uid://bjfxctcc6s6hc" path="res://Misc/paperBg.png" id="1_h4mse"]
 [ext_resource type="Script" path="res://Scenes/scripts/Camera2D.gd" id="2_w42uk"]
 [ext_resource type="Script" path="res://Scenes/scripts/SuperBoard.gd" id="3_jmnwi"]
-[ext_resource type="PackedScene" uid="uid://hv6uwmygfun1" path="res://Scenes/ui.tscn" id="4_jm631"]
+[ext_resource type="PackedScene" uid="uid://hv6uwmygfun1" path="res://Scenes/UI/ui.tscn" id="4_jm631"]
+[ext_resource type="Texture2D" uid="uid://cpqpw5sdmk3u" path="res://Assets/thin_board.png" id="6_secin"]
 
 [node name="Main" type="Node"]
 
+[node name="ui" parent="." instance=ExtResource("4_jm631")]
+
 [node name="background" type="Sprite2D" parent="."]
+position = Vector2(957, 539.5)
+scale = Vector2(1.00417, 0.997222)
 texture = ExtResource("1_h4mse")
 region_rect = Rect2(5.10678, 4.35228, 1914.89, 1075.65)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.6, 0.6)
+[node name="Camera2D" type="Camera2D" parent="background"]
+zoom = Vector2(1.01, 1.01)
 script = ExtResource("2_w42uk")
+randomStrength = 20.0
+
+[node name="Timer" type="Timer" parent="background/Camera2D"]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
 
 [node name="SuperBoard" type="Node2D" parent="."]
-scale = Vector2(1.585, 1.585)
+position = Vector2(920, 577)
+scale = Vector2(1.38, 1.38)
 script = ExtResource("3_jmnwi")
 
 [node name="Board0" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-233, -218)
-scale = Vector2(0.334, 0.32)
+position = Vector2(-202.174, -200)
+scale = Vector2(0.294, 0.282)
 global_pos = 0
 
 [node name="Board1" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-4, -224)
-scale = Vector2(0.334, 0.32)
+position = Vector2(0.724651, -200)
+scale = Vector2(0.294, 0.282)
 global_pos = 1
 
 [node name="Board2" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(244, -221)
-scale = Vector2(0.334, 0.32)
+position = Vector2(207.971, -200.725)
+scale = Vector2(0.294, 0.282)
 global_pos = 2
 
 [node name="Board3" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-238, -5)
-scale = Vector2(0.334, 0.32)
+position = Vector2(-208.696, -5.07245)
+scale = Vector2(0.294, 0.282)
 global_pos = 3
 
 [node name="Board4" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-0.999998, -8)
-scale = Vector2(0.334, 0.32)
+position = Vector2(0.724655, -2.1739)
+scale = Vector2(0.294, 0.282)
 global_pos = 4
 
 [node name="Board5" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(247, 2)
-scale = Vector2(0.334, 0.32)
+position = Vector2(208.696, -5.79708)
+scale = Vector2(0.294, 0.282)
 global_pos = 5
 
 [node name="Board6" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-233, 202)
-scale = Vector2(0.334, 0.32)
+position = Vector2(-210.145, 200.725)
+scale = Vector2(0.294, 0.282)
 global_pos = 6
 
 [node name="Board7" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(-5, 207)
-scale = Vector2(0.334, 0.32)
+position = Vector2(3.8147e-06, 199.275)
+scale = Vector2(0.294, 0.282)
 global_pos = 7
 
 [node name="Board8" parent="SuperBoard" groups=["locBoardsGroup"] instance=ExtResource("1_55cf8")]
-position = Vector2(244, 218)
-scale = Vector2(0.334, 0.32)
+position = Vector2(213.768, 202.174)
+scale = Vector2(0.294, 0.282)
 global_pos = 8
 
-[node name="ui" parent="." instance=ExtResource("4_jm631")]
+[node name="thin_board" type="Sprite2D" parent="SuperBoard"]
+position = Vector2(3.44203, 1.44927)
+scale = Vector2(0.72181, 0.718065)
+texture = ExtResource("6_secin")
+
+[connection signal="timeout" from="background/Camera2D/Timer" to="background/Camera2D" method="_on_timer_timeout"]
+[connection signal="big_letter_fall" from="SuperBoard/Board0" to="background/Camera2D" method="_on_board_0_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board1" to="background/Camera2D" method="_on_board_1_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board2" to="background/Camera2D" method="_on_board_2_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board3" to="background/Camera2D" method="_on_board_3_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board4" to="background/Camera2D" method="_on_board_4_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board5" to="background/Camera2D" method="_on_board_5_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board6" to="background/Camera2D" method="_on_board_6_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board7" to="background/Camera2D" method="_on_board_7_big_letter_fall"]
+[connection signal="big_letter_fall" from="SuperBoard/Board8" to="background/Camera2D" method="_on_board_8_big_letter_fall"]

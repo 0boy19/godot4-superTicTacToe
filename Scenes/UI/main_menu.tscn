@@ -1,0 +1,169 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgopcd5nxbjdl"]
+
+[ext_resource type="Script" path="res://Scenes/scripts/main_menu.gd" id="1_1n15t"]
+[ext_resource type="Texture2D" uid="uid://bjfxctcc6s6hc" path="res://Misc/paperBg.png" id="2_8i800"]
+[ext_resource type="Theme" uid="uid://mw0cg7sxbaye" path="res://Misc/STTTCustomTheme.tres" id="3_o4o8d"]
+[ext_resource type="FontFile" uid="uid://wvc4d8uxcccf" path="res://Misc/action-jackson.regular.ttf" id="4_5hxy3"]
+[ext_resource type="Texture2D" uid="uid://bobx4egno3j5e" path="res://Assets/X.png" id="5_anwhi"]
+[ext_resource type="Texture2D" uid="uid://dfovay06jq7p3" path="res://Assets/O.png" id="6_dg2rr"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1n15t")
+metadata/_edit_lock_ = true
+
+[node name="backgroundTemp" type="Sprite2D" parent="."]
+position = Vector2(952, 540)
+texture = ExtResource("2_8i800")
+region_rect = Rect2(5.10678, 4.35228, 1914.89, 1075.65)
+metadata/_edit_lock_ = true
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="main_Screen" type="Control" parent="Menu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_right = 1912.0
+offset_bottom = 1080.0
+
+[node name="STTT" type="Label" parent="Menu/main_Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0543333
+anchor_top = 0.0893704
+anchor_right = 0.975333
+anchor_bottom = 0.487956
+offset_left = -0.320007
+offset_top = -8.52
+offset_right = -2.64014
+offset_bottom = 17.0072
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_o4o8d")
+theme_override_fonts/font = ExtResource("4_5hxy3")
+theme_override_font_sizes/font_size = 206
+text = "SUPER
+TIC-TAC-TOE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/main_Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4005
+anchor_top = 0.61437
+anchor_right = 0.618075
+anchor_bottom = 0.82963
+offset_left = 7.04
+offset_top = 0.47998
+offset_right = 0.294983
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/main_Screen/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Menu/main_Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_o4o8d")
+theme_override_font_sizes/font_size = 51
+text = "Play"
+
+[node name="Options" type="Button" parent="Menu/main_Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_o4o8d")
+theme_override_font_sizes/font_size = 34
+text = "Options"
+
+[node name="quit" type="Button" parent="Menu/main_Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_o4o8d")
+theme_override_font_sizes/font_size = 34
+text = "Quit"
+
+[node name="credits" type="Button" parent="Menu/main_Screen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_o4o8d")
+theme_override_colors/font_color = Color(0.435294, 0, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "Multiplayer(WIP)"
+
+[node name="options_Menu" type="Control" parent="Menu"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Menu/options_Menu"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 160.0
+offset_right = 1677.0
+offset_bottom = 257.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_5hxy3")
+theme_override_font_sizes/font_size = 91
+text = "Pick colours for players:"
+
+[node name="ColorPickerButton_X" type="ColorPickerButton" parent="Menu/options_Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 18.8
+anchor_top = 9.2
+anchor_right = 21.2
+anchor_bottom = 11.4
+offset_top = -1.52588e-05
+grow_horizontal = 2
+theme = ExtResource("3_o4o8d")
+theme_override_icons/bg = ExtResource("5_anwhi")
+icon_alignment = 1
+edit_alpha = false
+metadata/_edit_use_anchors_ = true
+
+[node name="X_img" type="Sprite2D" parent="Menu/options_Menu/ColorPickerButton_X"]
+position = Vector2(312, 56)
+scale = Vector2(0.595371, 0.571385)
+texture = ExtResource("5_anwhi")
+
+[node name="ColorPickerButton_O" type="ColorPickerButton" parent="Menu/options_Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 18.8
+anchor_top = 16.2
+anchor_right = 21.15
+anchor_bottom = 18.4
+grow_horizontal = 2
+edit_alpha = false
+metadata/_edit_use_anchors_ = true
+
+[node name="O_img" type="Sprite2D" parent="Menu/options_Menu/ColorPickerButton_O"]
+position = Vector2(304, 56)
+scale = Vector2(0.599153, 0.599153)
+texture = ExtResource("6_dg2rr")
+
+[node name="BackButton" type="Button" parent="Menu"]
+visible = false
+offset_left = 48.0
+offset_top = 936.0
+offset_right = 232.0
+offset_bottom = 1028.0
+theme_override_font_sizes/font_size = 61
+text = "BACK"
+
+[connection signal="pressed" from="Menu/main_Screen/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/main_Screen/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Menu/main_Screen/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Menu/main_Screen/MarginContainer/VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="color_changed" from="Menu/options_Menu/ColorPickerButton_X" to="." method="_on_color_picker_button_x_color_changed"]
+[connection signal="color_changed" from="Menu/options_Menu/ColorPickerButton_O" to="." method="_on_color_picker_button_o_color_changed"]
+[connection signal="pressed" from="Menu/BackButton" to="." method="_on_back_button_pressed"]

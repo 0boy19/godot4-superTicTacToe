@@ -1,6 +1,6 @@
 extends Node2D
 var disabled_board = preload("res://Assets/Claimed_Disabled.png")
-
+var won_strike = preload("res://Scenes/won_strike.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -44,7 +44,19 @@ func disable_other_boards():
 				get_node(boardNode).disable_positionCollisions()
 			
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+#func game_strike(win_key):#puts a strike indicating how game was won on the global board
+	#var inst = won_strike.instantiate()
+	#var node = "Board" + str(win_key[1]) #the middle pos of the whole key
+	#inst.position = get_node(node).position #access through tree
+	#var diff = win_key[2] - win_key[0]
+	#match diff: #equivalent to switch statement
+		#4:#comes when win key is diagonal
+			#inst.rotation = deg_to_rad(-45)
+		#8:# other diagonal
+			#inst.rotation = deg_to_rad(45)
+		#6:# this is for vertical
+			#inst.rotation = deg_to_rad(90)
+	#$".".add_child(inst)
+#
+##func _on_gboard_game_over():
+	##game_strike(Game.current_win_condition)
